@@ -26,7 +26,8 @@ export default function setTheNumber() {
   const setTheNumber = async() => {
     try {
         const contract = new ethers.Contract(contractAddress, abi, signer)
-        await contract.setNumber(number)
+        let transaction = await contract.setNumber(number)
+        await transaction.wait()
         router.push('/getNumber')
         toast({
             title: 'Congratulations',
