@@ -2,13 +2,13 @@ const hre = require("hardhat");
 
 async function main() {
 
-  const SimpleStorage = await hre.ethers.getContractFactory("SimpleStorage");
-  const simpleStorage = await SimpleStorage.deploy();
+  const Shambles = await hre.ethers.getContractFactory("Shambles");
+  const shambles = await Shambles.deploy();
 
-  await simpleStorage.deployed();
+  await shambles.deployed();
 
   console.log(
-    `SimpleStorage deployed to ${simpleStorage.address}`
+    `shambles deployed to ${shambles.address}`
   );
 }
 
