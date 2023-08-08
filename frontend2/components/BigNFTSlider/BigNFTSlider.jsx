@@ -63,40 +63,7 @@ const BigNFTSlider = () => {
         <div className={Style.bigNFTSlider}>
             <div className={Style.bigNFTSlider_box}>
                 <div className={Style.bigNFTSlider_box_left}>
-                    <h2>{sliderData[idNumber].title}</h2>
-                    <div className={Style.bigNFTSlider_box_left_creator}>
-                        <div className={Style.bigNFTSlider_box_left_creator_profile}>
-                            <Image
-                                className={Style.bigNFTSlider_box_left_creator_profile_img}
-                                src={sliderData[idNumber].image}
-                                alt="profile image"
-                                width={50}
-                                height={50}
-                            />
-                            <div className={Style.bigNFTSlider_box_left_creator_profile_info}>
-                                <p>Creator</p>
-                                <h4>
-                                    {sliderData[idNumber].name}{" "}
-                                    <span>
-                                        <MdVerified />
-                                    </span>
-                                </h4>
-                            </div>
-                        </div>
 
-                        <div className={Style.bigNFTSlider_box_left_creator_collection}>
-                            <AiFillFire
-                                className={Style.bigNFTSlider_box_left_creator_collection_icon}
-                            />
-
-                            <div
-                                className={Style.bigNFTSlider_box_left_creator_collection_info}
-                            >
-                                <p>Collection</p>
-                                <h4>{sliderData[idNumber].collection}</h4>
-                            </div>
-                        </div>
-                    </div>
 
                     <div className={Style.bigNFTSlider_box_left_bidding}>
                         <div className={Style.bigNFTSlider_box_left_bidding_box}>
@@ -158,6 +125,8 @@ const BigNFTSlider = () => {
 
                 <div className={Style.bigNFTSlider_box_right}>
                     <div className={Style.bigNFTSlider_box_right_box}>
+                        <h2>SHAMBLES: {sliderData[idNumber].id}</h2>
+
                         <Image
                             src={sliderData[idNumber].nftImage}
                             alt="NFT IMAGE"
@@ -165,11 +134,6 @@ const BigNFTSlider = () => {
                             width={350}
                             height={350}
                         />
-
-                        <div className={Style.bigNFTSlider_box_right_box_like}>
-                            <AiFillHeart />
-                            <span>{sliderData[idNumber].like}</span>
-                        </div>
                     </div>
                 </div>
             </div>

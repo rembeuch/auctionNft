@@ -41,7 +41,7 @@ contract Shambles is ERC721URIStorage, Ownable, ReentrancyGuard {
             msg.sender,
             string(abi.encodePacked(Strings.toString(newTokenId))),
             true,
-            block.timestamp + 1 days,
+            block.timestamp + 1 seconds,
             msg.sender,
             0.01 ether
         );

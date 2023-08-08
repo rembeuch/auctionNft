@@ -36,7 +36,6 @@ export default function Collection() {
       const nfts = await contract.getMyNFTs();
 
       setNftList(nfts);
-      console.log(nfts)
     }
   }
 
