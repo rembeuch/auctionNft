@@ -31,7 +31,7 @@ contract Shambles is ERC721URIStorage, Ownable, ReentrancyGuard {
         createShamble();
     }
 
-    function createShamble() private onlyOwner {
+    function createShamble() public onlyOwner {
         _tokenIdCounter.increment();
         uint256 newTokenId = _tokenIdCounter.current();
         _mint(msg.sender, newTokenId);
@@ -41,7 +41,7 @@ contract Shambles is ERC721URIStorage, Ownable, ReentrancyGuard {
             msg.sender,
             string(abi.encodePacked(Strings.toString(newTokenId))),
             true,
-            block.timestamp + 1 seconds,
+            block.timestamp + 2 minutes,
             msg.sender,
             0.01 ether
         );

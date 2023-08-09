@@ -267,6 +267,13 @@ export const abi = [
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "createShamble",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",

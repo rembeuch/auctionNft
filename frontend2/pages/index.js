@@ -56,9 +56,27 @@ export default function Collection() {
     }
   }
 
+  async function finishAuction() {
+
+    if (isConnected && nftList.length > 0) {
+      const contract = new ethers.Contract(contractAddress, abi, signer)
+      const ownerAddress = await contract.owner()
+      if (nftList[idNumber][6] != ownerAddress) {
+        await contract.endAuction(nftList[idNumber][3]);
+      }
+    }
+  }
+
   async function getTimestamp() {
-    if (isConnected) {
+    if (isConnected && nftList.length > 0) {
       setCountdownTimestamp(parseInt(nftList[idNumber][5]));
+    }
+  }
+
+  async function create() {
+    if (isConnected) {
+      const contract = new ethers.Contract(contractAddress, abi, signer)
+      contract.createShamble()
     }
   }
 
@@ -74,6 +92,7 @@ export default function Collection() {
       } else {
         setTimeRemaining(0);
         clearInterval(interval); // Arrêter l'intervalle une fois que le compte à rebours est terminé
+        finishAuction();
       }
     }, 1000);
   }, [address, nftList, uri, idNumber]);
@@ -144,7 +163,7 @@ export default function Collection() {
                       />
                       <span>Auction ending at {new Date(nftList[idNumber][5] * 1000).toLocaleDateString()} {new Date(nftList[idNumber][5] * 1000).toLocaleTimeString()}</span>
                     </p>
-                    {timeRemaining == 0 ? (<p>Auction is over</p>) : (
+                    {timeRemaining == 0 ? (<div> <button onClick={() => create()}>Create</button> <p>Auction is over</p> </div>) : (
 
 
                       <div className={Style.bigNFTSlider_box_left_bidding_box_timer}>
