@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
-import { contractAddress, abi } from "../public/constants"
+import { contractAddress, contractX, contractStaking, abi, abiX, abiStaking } from "../public/constants"
 import Link from 'next/link';
 
 
@@ -19,12 +19,19 @@ export default function Collection() {
 
   const [nftList, setNftList] = useState([]);
   const [uri, setUri] = useState([]);
+  const [nftStaked, setNftStaked] = useState([]);
+  const [stakedUri, setStakedUri] = useState([]);
+
 
 
   const { address, isConnected } = useAccount()
   const provider = useProvider()
   const { data: signer } = useSigner()
   const [price, setPrice] = useState(0.01);
+  const [approval, setApproval] = useState(false);
+  const [balance, setBalance] = useState();
+  const [reward, setReward] = useState(0);
+
 
   const handleChange = (event) => {
     setPrice(event.target.value);
@@ -51,10 +58,42 @@ export default function Collection() {
     }
   }
 
+  async function isApproved() {
+    if (isConnected) {
+      const contract = new ethers.Contract(contractAddress, abi, signer)
+      const boolResponse = await contract.isApprovedForAll(address, contractStaking);
+      setApproval(boolResponse);
+    }
+  }
+
+  async function fetchStake() {
+    if (isConnected) {
+      const staking = new ethers.Contract(contractStaking, abiStaking, signer)
+      const stake = await staking.getStaked();
+      setNftStaked(stake)
+    }
+  }
+
+  async function getStakedUrl() {
+    if (isConnected) {
+      const contract = new ethers.Contract(contractAddress, abi, signer)
+      const url = []
+      for (let i = 0; i < nftStaked.length; i++) {
+        let uri = await contract.tokenURI(nftStaked[i][0])
+        url.push(uri);
+      }
+      setStakedUri(url)
+    }
+  }
+
   useEffect(() => {
     fetchNfts();
     getUrl()
-  }, [address, nftList, uri]);
+    isApproved()
+    fetchStake()
+    getStakedUrl()
+    balanceOfUser()
+  }, [address, nftList, uri, approval]);
 
   async function setForSale(id, price) {
     if (isConnected) {
@@ -70,6 +109,44 @@ export default function Collection() {
     }
   }
 
+  async function staking(id) {
+    if (isConnected) {
+
+      const staking = new ethers.Contract(contractStaking, abiStaking, signer)
+      await staking.Stake(id);
+    }
+  }
+
+  async function unstaking(id) {
+    if (isConnected) {
+
+      const staking = new ethers.Contract(contractStaking, abiStaking, signer)
+      await staking.unstake(id);
+    }
+  }
+
+  async function claim(id) {
+    if (isConnected) {
+
+      const staking = new ethers.Contract(contractStaking, abiStaking, signer)
+      await staking.claim(id);
+    }
+  }
+
+  async function balanceOfUser() {
+    if (isConnected) {
+      const contractToken = new ethers.Contract(contractX, abiX, signer)
+      const amount = await contractToken.balanceOf(address);
+      setBalance(ethers.utils.formatEther(amount.toString()))
+    }
+  }
+
+  async function approveUser() {
+    if (isConnected) {
+      const contract = new ethers.Contract(contractAddress, abi, signer)
+      await contract.setApprovalForAll(contractStaking, true);
+    }
+  }
 
 
   return (
@@ -83,7 +160,39 @@ export default function Collection() {
       <Layout>
         {isConnected ? (
           <div className="App">
-            <h1>My NFTs</h1>
+            <h1>My NFTs / Tokens balance: {balance}</h1>
+            {nftStaked.map((nft, index) => (
+              < div key={nft[0]} >
+                < Image src={stakedUri[index]} alt="img" width={400} height={400} style={{ margin: 10 }} />
+                <Card style={{ margin: 20, padding: 10, border: `10px solid ${nft[0] ? "green" : "red"}` }} key={nft[0]}>
+                  id#{nft[0]}
+                  <Button style={{
+                    color: "#F9DC5C",
+                    backgroundColor: "blue",
+                    padding: 10,
+                    margin: 10,
+                    transition: "background-color 0.3s ease",
+                    borderRadius: 5,
+                    textDecoration: "none"
+                  }} onClick={() => claim(nft[0])}>Claim Reward</Button>
+
+                  {address != nft[2] ?
+                    <p> owner: 0x...{nft[2].slice(-4)}</p>
+                    : <div className="text-emerald-700">You are the owner of this NFT</div>
+                  }
+                  <Button style={{
+                    color: "#F9DC5C",
+                    backgroundColor: "blue",
+                    padding: 10,
+                    margin: 10,
+                    transition: "background-color 0.3s ease",
+                    borderRadius: 5,
+                    textDecoration: "none"
+                  }} onClick={() => unstaking(nft[0])}>Unstake NFT</Button>
+                </Card>
+                <hr></hr>
+              </div>
+            ))}
             {nftList.map((nft, index) => (
               < div key={nft[3]} >
                 < Image src={uri[index]} alt="img" width={400} height={400} style={{ margin: 10 }} />
@@ -126,6 +235,26 @@ export default function Collection() {
                         textDecoration: "none"
                       }} onClick={() => unSale(nft[3])}>Set UnSale</Button>)}
                   </p>
+                  {approval ? (<Button style={{
+                    color: "#F9DC5C",
+                    backgroundColor: "blue",
+                    padding: 10,
+                    margin: 10,
+                    transition: "background-color 0.3s ease",
+                    borderRadius: 5,
+                    textDecoration: "none"
+                  }} onClick={() => staking(nft[3])}>Stake NFT</Button>)
+                    :
+                    (<Button style={{
+                      color: "#F9DC5C",
+                      backgroundColor: "blue",
+                      padding: 10,
+                      margin: 10,
+                      transition: "background-color 0.3s ease",
+                      borderRadius: 5,
+                      textDecoration: "none"
+                    }} onClick={() => approveUser()}>Approve for NFT Staking</Button>)}
+
                 </Card>
                 <p>Token Price: {ethers.utils.formatEther(nft[1].toString())} eth</p>
                 <hr></hr>
