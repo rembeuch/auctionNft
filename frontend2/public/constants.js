@@ -1,4 +1,4 @@
-export const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+export const contractAddress = "0xbD0d814Ae92e5a29d5546c465692F6A59e4F7E21"
 export const abi = [
   {
     "inputs": [],
@@ -692,7 +692,7 @@ export const abi = [
     "type": "function"
   }
 ]
-export const contractX = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+export const contractX = "0x0a795a6cd492DfD6432e216575D1c00227270395"
 export const abiX = [
   {
     "inputs": [],
@@ -1067,7 +1067,7 @@ export const abiX = [
   }
 ]
 
-export const contractStaking = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
+export const contractStaking = "0xc401896BDE0D2B67c36547A5f9D6795E85a2F192"
 export const abiStaking = [
   {
     "inputs": [
