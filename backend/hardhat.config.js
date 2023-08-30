@@ -3,7 +3,7 @@ require('dotenv').config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  defaultNetwork: "hardhat",
+  defaultNetwork: "sepolia",
   networks: {
     localhost: {
       url: "http://127.0.0.1:8545",
