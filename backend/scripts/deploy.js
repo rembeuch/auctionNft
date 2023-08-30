@@ -29,7 +29,6 @@ async function main() {
     `stakingShambles deployed to ${stakingShambles.address}`
   );
 
-  await shambles.setApprovalForAll(stakingShambles.address, true);
   await shamblx.addAdmin(stakingShambles.address);
 
 }

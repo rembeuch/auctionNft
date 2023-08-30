@@ -45,7 +45,6 @@ export default function Collection() {
     if (isConnected) {
       const contract = new ethers.Contract(contractAddress, abi, signer)
       const nfts = await contract.getAllNFTs();
-
       setNftList(nfts);
     }
   }
@@ -58,13 +57,14 @@ export default function Collection() {
         let uri = await contract.tokenURI(nftList[i][3])
         url.push(uri);
       }
+      console.log(url)
       setUri(url)
     }
   }
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://aqua-variable-hummingbird-314.mypinata.cloud/ipfs/QmZY7TxAvZtmDkUhq329fjoUfWqC5T3HRv5fCTPyKqtp2h?_gl=1*r3pl9a*_ga*MjEwMzk2NTQ3MS4xNjg5MTUzODY2*_ga_5RMPXG14TE*MTY5MjcxOTg2OC45LjEuMTY5MjcyMDYwMi42MC4wLjA.');
+      const response = await axios.get('https://aqua-variable-hummingbird-314.mypinata.cloud/ipfs/QmdK6Ta2Z5UEhaZkcnbc9gMxHKsTEkZGK5ePXhKhnqDYMR?_gl=1*ga420r*_ga*MjEwMzk2NTQ3MS4xNjg5MTUzODY2*_ga_5RMPXG14TE*MTY5MzMwOTIxNi4xMC4xLjE2OTMzMTA0NjAuNjAuMC4w');
       setData(response.data);
     } catch (error) {
       setError(error);

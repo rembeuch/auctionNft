@@ -41,7 +41,7 @@ contract Shambles is ERC721URIStorage, Ownable, ReentrancyGuard {
             msg.sender,
             string(abi.encodePacked(Strings.toString(newTokenId))),
             true,
-            block.timestamp + 7 days,
+            block.timestamp + 1 days,
             msg.sender,
             0.01 ether
         );
@@ -49,7 +49,7 @@ contract Shambles is ERC721URIStorage, Ownable, ReentrancyGuard {
             newTokenId,
             string(
                 abi.encodePacked(
-                    "https://aqua-variable-hummingbird-314.mypinata.cloud/ipfs/QmS3MohLamsBBuo87LmH6yxu6LJTcnvfxPeNkw4yijoLhH/",
+                    "https://aqua-variable-hummingbird-314.mypinata.cloud/ipfs/Qmb7n8Dtv7cJBmCE8FtFb5UjSCn2tHkBUPLtgdSpSJB8FQ/",
                     string(abi.encodePacked(Strings.toString(newTokenId))),
                     ".png"
                 )

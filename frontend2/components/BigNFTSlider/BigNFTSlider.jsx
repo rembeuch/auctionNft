@@ -18,8 +18,8 @@ const BigNFTSlider = () => {
             collection: "GYm",
             price: "00664 ETH",
             like: 243,
-            image: "https://aqua-variable-hummingbird-314.mypinata.cloud/ipfs/QmS3MohLamsBBuo87LmH6yxu6LJTcnvfxPeNkw4yijoLhH/1.png",
-            nftImage: "https://aqua-variable-hummingbird-314.mypinata.cloud/ipfs/QmS3MohLamsBBuo87LmH6yxu6LJTcnvfxPeNkw4yijoLhH/1.png",
+            image: "https://aqua-variable-hummingbird-314.mypinata.cloud/ipfs/Qmb7n8Dtv7cJBmCE8FtFb5UjSCn2tHkBUPLtgdSpSJB8FQ/1.png",
+            nftImage: "https://aqua-variable-hummingbird-314.mypinata.cloud/ipfs/Qmb7n8Dtv7cJBmCE8FtFb5UjSCn2tHkBUPLtgdSpSJB8FQ/1.png",
             time: {
                 days: 21,
                 hours: 40,
@@ -34,8 +34,8 @@ const BigNFTSlider = () => {
             collection: "Home",
             price: "0000004 ETH",
             like: 243,
-            image: "https://aqua-variable-hummingbird-314.mypinata.cloud/ipfs/QmS3MohLamsBBuo87LmH6yxu6LJTcnvfxPeNkw4yijoLhH/10.png",
-            nftImage: "https://aqua-variable-hummingbird-314.mypinata.cloud/ipfs/QmS3MohLamsBBuo87LmH6yxu6LJTcnvfxPeNkw4yijoLhH/10.png",
+            image: "https://aqua-variable-hummingbird-314.mypinata.cloud/ipfs/Qmb7n8Dtv7cJBmCE8FtFb5UjSCn2tHkBUPLtgdSpSJB8FQ/10.png",
+            nftImage: "https://aqua-variable-hummingbird-314.mypinata.cloud/ipfs/Qmb7n8Dtv7cJBmCE8FtFb5UjSCn2tHkBUPLtgdSpSJB8FQ/10.png",
             time: {
                 days: 77,
                 hours: 11,

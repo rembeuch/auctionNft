@@ -34,7 +34,7 @@ describe("test createShamble ", function () {
     expect(parseFloat(shamble1[1])).to.equal(1 * (10 ** 16));
     expect(shamble1[2]).to.equal(owner);
     expect(shamble1[3]).to.equal('1');
-    expect(await contract.tokenURI(shamble1[3])).to.equal('https://aqua-variable-hummingbird-314.mypinata.cloud/ipfs/QmS3MohLamsBBuo87LmH6yxu6LJTcnvfxPeNkw4yijoLhH/1.png')
+    expect(await contract.tokenURI(shamble1[3])).to.equal('https://aqua-variable-hummingbird-314.mypinata.cloud/ipfs/Qmb7n8Dtv7cJBmCE8FtFb5UjSCn2tHkBUPLtgdSpSJB8FQ/1.png')
   });
 });
 
