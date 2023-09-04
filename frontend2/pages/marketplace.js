@@ -24,6 +24,7 @@ import { contractAddress, abi } from "../public/constants"
 
 
 
+
 export default function Marketplace() {
 
   const { address, isConnected } = useAccount()
@@ -95,7 +96,7 @@ export default function Marketplace() {
       <Layout>
         <div align="center">
 
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div id='nftGrid'>
             {nftList.map((nft, index) => (
               < div key={nft[3]} >
                 < Image src={uri[index]} alt="img" width={400} height={400} style={{ margin: 10 }} />
