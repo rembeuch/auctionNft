@@ -355,10 +355,16 @@ export default function Collection() {
 
           </div>
         ) : (
-          <Alert status='warning' width="50%">
-            <AlertIcon />
-            Please, connect your Wallet!
-          </Alert>
+          <>
+            <Image src="/gif.gif" alt="logo" width={400} height={400} style={{ margin: 10 }} display={{ base: 'none', md: 'block' }} />
+
+            <Alert status='warning' width="50%">
+              <Image src="/gif.gif" alt="logo" width={40} height={40} style={{ margin: 10 }} display={{ base: 'none', md: 'block' }} />
+              <AlertIcon />
+              Please, connect your Wallet!
+            </Alert>
+          </>
+
         )}
       </Layout>
     </>
