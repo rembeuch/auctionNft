@@ -122,7 +122,7 @@ export default function Collection() {
         clearInterval(interval);
       }
     }, 1000);
-  }, [address, nftList, uri]);
+  }, [address]);
 
   useEffect(() => {
     idStart()

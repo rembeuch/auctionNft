@@ -93,7 +93,7 @@ export default function Collection() {
     fetchStake()
     getStakedUrl()
     balanceOfUser()
-  }, [address, nftList, uri, approval]);
+  }, [address, approval]);
 
   async function setForSale(id, price) {
     if (isConnected) {
